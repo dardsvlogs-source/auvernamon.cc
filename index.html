@@ -13,14 +13,31 @@
             --dark-color: #1d3557;
             --light-color: #a8dadc;
             --text-color: #333;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --hero-overlay: rgba(0,0,0,0.7);
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #e63946;
+            --secondary-color: #1d3557;
+            --dark-color: #f1faee;
+            --light-color: #457b9d;
+            --text-color: #f1faee;
+            --bg-color: #1a1a2e;
+            --card-bg: #16213e;
+            --hero-overlay: rgba(0,0,0,0.8);
         }
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f8f9fa;
+            background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
             scroll-behavior: smooth;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.5s ease, color 0.5s ease;
         }
         
         .navbar {
@@ -37,25 +54,27 @@
             font-weight: 700;
             font-size: 28px;
             color: white !important;
+            display: flex;
+            align-items: center;
         }
         
-        .navbar-brand span {
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+            margin-left: 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .theme-toggle:hover {
+            transform: rotate(30deg);
             color: var(--secondary-color);
         }
         
-        .nav-link {
-            color: white !important;
-            margin: 0 10px;
-            font-weight: 500;
-            cursor: pointer;
-        }
-        
-        .nav-link:hover {
-            color: var(--secondary-color) !important;
-        }
-        
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+            background: linear-gradient(var(--hero-overlay), var(--hero-overlay)), url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
             background-size: cover;
             background-position: center;
             height: 600px;
@@ -114,7 +133,7 @@
         }
         
         .book-card {
-            background: white;
+            background: var(--card-bg);
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -161,7 +180,7 @@
         }
         
         .author-info {
-            background-color: white;
+            background-color: var(--card-bg);
             border-radius: 10px;
             padding: 40px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -239,7 +258,7 @@
         }
         
         .video-card {
-            background: white;
+            background: var(--card-bg);
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             overflow: hidden;
@@ -315,9 +334,14 @@
             <a class="navbar-brand" href="#">
                 <i class="fas fa-book"></i> Auverna<span>mon</span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <div class="d-flex">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
@@ -487,6 +511,31 @@
                 });
             }
         });
+
+        // Dark Mode Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        const htmlElement = document.documentElement;
+
+        // Check saved preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            htmlElement.setAttribute('data-theme', 'dark');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                htmlElement.removeAttribute('data-theme');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.removeItem('theme');
+            } else {
+                htmlElement.setAttribute('data-theme', 'dark');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
     </script>
 </body>
-</html>[![Netlify Status](https://api.netlify.com/api/v1/badges/76279c53-ad7f-4c9e-85bb-eb8752d8ba1f/deploy-status)](https://app.netlify.com/projects/effortless-gingersnap-68201e/deploys)
+</html>
