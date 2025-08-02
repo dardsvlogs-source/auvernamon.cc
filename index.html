@@ -336,8 +336,8 @@
             width: 60px;
             height: 60px;
             background: rgba(255, 0, 0, 0.8);
-            mask: url("image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cpath d='M70 40c0 4.4-3.6 8-8 8H20c-4.4 0-8-3.6-8-8s3.6-8 8-8h42c4.4 0 8 3.6 8 8z'/%3E%3Cpath d='M30 25l20 15-20 15z'/%3E%3C/svg%3E") no-repeat 50% 50%;
-            -webkit-mask: url("image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cpath d='M70 40c0 4.4-3.6 8-8 8H20c-4.4 0-8-3.6-8-8s3.6-8 8-8h42c4.4 0 8 3.6 8 8z'/%3E%3Cpath d='M30 25l20 15-20 15z'/%3E%3C/svg%3E") no-repeat 50% 50%;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cpath d='M70 40c0 4.4-3.6 8-8 8H20c-4.4 0-8-3.6-8-8s3.6-8 8-8h42c4.4 0 8 3.6 8 8z'/%3E%3Cpath d='M30 25l20 15-20 15z'/%3E%3C/svg%3E") no-repeat 50% 50%;
+            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cpath d='M70 40c0 4.4-3.6 8-8 8H20c-4.4 0-8-3.6-8-8s3.6-8 8-8h42c4.4 0 8 3.6 8 8z'/%3E%3Cpath d='M30 25l20 15-20 15z'/%3E%3C/svg%3E") no-repeat 50% 50%;
             mask-size: 80%;
             -webkit-mask-size: 80%;
         }
@@ -739,9 +739,9 @@
             const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
             
             if (searchTerm.includes('auvernamon')) {
-                window.location.href = 'book-auvernamon.html';
+                window.location.href = './book-auvernamon.html';
             } else if (searchTerm.includes('djaloshi') || searchTerm.includes('autik')) {
-                window.location.href = 'book-djaloshi.html';
+                window.location.href = './book-djaloshi.html';
             } else if (searchTerm) {
                 alert('Asnjë libër i gjetur. Ju lutemi provoni "AuvernaMon" ose "Djaloshi Autik".');
             }
@@ -755,4 +755,4 @@
         });
     </script>
 </body>
-</html> 
+</html>
