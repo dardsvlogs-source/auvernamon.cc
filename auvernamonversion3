@@ -127,6 +127,31 @@
             text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
         }
         
+        .search-container {
+            display: flex;
+            max-width: 500px;
+            margin: 20px auto 0;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 30px 0 0 30px;
+            font-size: 16px;
+            outline: none;
+        }
+        
+        .search-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 0 30px 30px 0;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
         .btn-primary {
             background-color: var(--primary-color);
             border-color: var(--primary-color);
@@ -443,6 +468,10 @@
         <div class="container hero-content">
             <h1 class="hero-title">Poezi nga Jamarbër Hoxha</h1>
             <p class="hero-subtitle">Prisni në botën e bukur të poezisë së Jamarbër Hoxhës</p>
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="Kërko librin...">
+                <button onclick="searchBook()" class="search-btn">Kërko</button>
+            </div>
             <a href="#librat" class="btn btn-primary">Zbulo Librat</a>
         </div>
     </section>
@@ -702,6 +731,26 @@
                 htmlElement.setAttribute('data-theme', 'dark');
                 themeIcon.classList.replace('fa-moon', 'fa-sun');
                 localStorage.setItem('theme', 'dark');
+            }
+        });
+        
+        // Search functionality
+        function searchBook() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            
+            if (searchTerm.includes('auvernamon')) {
+                window.location.href = 'book-auvernamon.html';
+            } else if (searchTerm.includes('djaloshi') || searchTerm.includes('autik')) {
+                window.location.href = 'book-djaloshi.html';
+            } else if (searchTerm) {
+                alert('Asnjë libër i gjetur. Ju lutemi provoni "AuvernaMon" ose "Djaloshi Autik".');
+            }
+        }
+        
+        // Allow search on Enter key
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchBook();
             }
         });
     </script>
