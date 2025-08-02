@@ -73,6 +73,57 @@
             color: var(--secondary-color);
         }
         
+        .lang-switch {
+            display: flex;
+            gap: 5px;
+            margin-left: 15px;
+        }
+        
+        .lang-btn {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .lang-btn.active {
+            background: white;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-left: 15px;
+            align-items: center;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .social-icon:hover {
+            background: white;
+            color: var(--primary-color);
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
         .hero {
             background: linear-gradient(var(--hero-overlay), var(--hero-overlay)), url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
             background-size: cover;
@@ -202,38 +253,6 @@
             text-align: justify;
         }
         
-        .social-links {
-            text-align: center;
-            margin: 40px 0;
-        }
-        
-        .social-icon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            margin: 0 15px;
-            font-size: 24px;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .social-icon.facebook {
-            background-color: #3b5998;
-        }
-        
-        .social-icon.instagram {
-            background-color: #e1306c;
-        }
-        
-        .social-icon:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-        
         .links-section {
             text-align: center;
             margin: 50px 0;
@@ -319,9 +338,9 @@
             }
             
             .social-icon {
-                width: 50px;
-                height: 50px;
-                font-size: 20px;
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
             }
         }
     </style>
@@ -334,7 +353,19 @@
             <a class="navbar-brand" href="#">
                 <i class="fas fa-book"></i> Auverna<span>mon</span>
             </a>
-            <div class="d-flex">
+            <div class="d-flex align-items-center">
+                <div class="lang-switch">
+                    <button class="lang-btn active" id="lang-al">SQ</button>
+                    <button class="lang-btn" id="lang-en">EN</button>
+                </div>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/jamarberhoxha/" class="social-icon" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/jamarber.hoxha" class="social-icon" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
                 <button class="theme-toggle" id="themeToggle" aria-label="Toggle Dark Mode">
                     <i class="fas fa-moon"></i>
                 </button>
@@ -361,15 +392,15 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container hero-content">
-            <h1>Poezi nga Jamarbër Hoxha</h1>
-            <p>Prisni në botën e bukur të poezisë së Jamarbër Hoxhës</p>
+            <h1 class="hero-title">Poezi nga Jamarbër Hoxha</h1>
+            <p class="hero-subtitle">Prisni në botën e bukur të poezisë së Jamarbër Hoxhës</p>
             <a href="#librat" class="btn btn-primary">Zbulo Librat</a>
         </div>
     </section>
 
     <!-- Books Section -->
     <section id="librat" class="container">
-        <h2 class="section-title">Librat e Jamarbër Hoxhës</h2>
+        <h2 class="section-title books-title">Librat e Jamarbër Hoxhës</h2>
         <div class="row">
             <!-- Book 1 -->
             <div class="col-md-6">
@@ -403,18 +434,18 @@
 
     <!-- Author Section -->
     <section id="autori" class="container">
-        <h2 class="section-title">Rreth Autorit</h2>
+        <h2 class="section-title author-title">Rreth Autorit</h2>
         <div class="author-info">
             <h3>Jamarbër Hoxha</h3>
-            <p>Jamarbër Hoxha ka lindur më 17 dhjetor 2010. Është diagnostikuar me Çrregullime të Spektrit të Autizmit në dhjetor të 2013-ës. Ndjek shkollën "World Academy of Tirana".</p>
-            <p>Libri është pasioni i tij më i madh. Jamarbri lexon mesatarisht një libër në javë dhe ndër autorët e tij më të parapëlqyer janë Shekspiri dhe Ibsen.</p>
-            <p>Është anëtar i bibliotekës "Petro Zheji" në Tiranë. Ka fituar çmimin "Lexuesi i vitit", në Panairin e Librit 2020.</p>
+            <p class="author-text">Jamarbër Hoxha ka lindur më 17 dhjetor 2010. Është diagnostikuar me Çrregullime të Spektrit të Autizmit në dhjetor të 2013-ës. Ndjek shkollën "World Academy of Tirana".</p>
+            <p class="author-text">Libri është pasioni i tij më i madh. Jamarbri lexon mesatarisht një libër në javë dhe ndër autorët e tij më të parapëlqyer janë Shekspiri dhe Ibsen.</p>
+            <p class="author-text">Është anëtar i bibliotekës "Petro Zheji" në Tiranë. Ka fituar çmimin "Lexuesi i vitit", në Panairin e Librit 2020.</p>
         </div>
     </section>
 
     <!-- Video Section -->
     <section class="youtube-section container">
-        <h2 class="section-title">Video për Jamarbër Hoxha</h2>
+        <h2 class="section-title video-title">Video për Jamarbër Hoxha</h2>
         <div class="row">
             <!-- Video 1 -->
             <div class="col-md-4">
@@ -458,22 +489,11 @@
         </div>
     </section>
 
-    <!-- Social Links -->
-    <section class="social-links">
-        <h2 class="section-title">Na ndiqni në rrjetet sociale</h2>
-        <a href="https://www.facebook.com/jamarberhoxha/" class="social-icon facebook" target="_blank">
-            <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="https://www.instagram.com/jamarber.hoxha" class="social-icon instagram" target="_blank">
-            <i class="fab fa-instagram"></i>
-        </a>
-    </section>
-
     <!-- Links Section -->
     <section id="lidhjet" class="links-section">
-        <h2 class="section-title">Lidhje të tjera</h2>
-        <a href="https://sot.com.al/aktualitet/e-rralle-jamarber-hoxha-djali-magjik-qe-ka-lexuar-qe-15-muajsh-dhe-di/" target="_blank"><i class="fas fa-external-link-alt"></i> Artikulli në SOT.com.al</a>
-        <a href="https://abcnews.al/etiketa/jamarber-hoxha/" target="_blank"><i class="fas fa-external-link-alt"></i> Etiketa në ABCNews.al</a>
+        <h2 class="section-title links-title">Lidhje të tjera</h2>
+        <a href="https://sot.com.al/aktualitet/e-rralle-jamarber-hoxha-djali-magjik-qe-ka-lexuar-qe-15-muajsh-dhe-di/" target="_blank"><i class="fas fa-external-link-alt"></i> <span class="link-text">Artikulli në SOT.com.al</span></a>
+        <a href="https://abcnews.al/etiketa/jamarber-hoxha/" target="_blank"><i class="fas fa-external-link-alt"></i> <span class="link-text">Etiketa në ABCNews.al</span></a>
     </section>
 
     <!-- Footer -->
@@ -536,6 +556,84 @@
                 localStorage.setItem('theme', 'dark');
             }
         });
+
+        // Language Toggle
+        const langAl = document.getElementById('lang-al');
+        const langEn = document.getElementById('lang-en');
+        
+        // English translations
+        const translations = {
+            heroTitle: "Poetry by Jamarbër Hoxha",
+            heroSubtitle: "Enter the beautiful world of Jamarbër Hoxha's poetry",
+            discoverBtn: "Discover Books",
+            booksTitle: "Books by Jamarbër Hoxha",
+            authorTitle: "About the Author",
+            authorText1: "Jamarbër Hoxha was born on December 17, 2010. He was diagnosed with Autism Spectrum Disorder in December 2013. He attends World Academy of Tirana.",
+            authorText2: "Books are his greatest passion. Jamarbër reads an average of one book per week, and his favorite authors are Shakespeare and Ibsen.",
+            authorText3: "He is a member of the 'Petro Zheji' library in Tirana. He won the 'Reader of the Year' award at the Book Fair 2020.",
+            videoTitle: "Videos about Jamarbër Hoxha",
+            linksTitle: "Other Links",
+            link1: "Article on SOT.com.al",
+            link2: "Tag on ABCNews.al"
+        };
+
+        langEn.addEventListener('click', () => {
+            if (!langEn.classList.contains('active')) {
+                // Change to English
+                document.querySelector('.hero-title').textContent = translations.heroTitle;
+                document.querySelector('.hero-subtitle').textContent = translations.heroSubtitle;
+                document.querySelector('.btn-primary').textContent = translations.discoverBtn;
+                document.querySelector('.books-title').textContent = translations.booksTitle;
+                document.querySelector('.author-title').textContent = translations.authorTitle;
+                document.querySelectorAll('.author-text')[0].textContent = translations.authorText1;
+                document.querySelectorAll('.author-text')[1].textContent = translations.authorText2;
+                document.querySelectorAll('.author-text')[2].textContent = translations.authorText3;
+                document.querySelector('.video-title').textContent = translations.videoTitle;
+                document.querySelector('.links-title').textContent = translations.linksTitle;
+                document.querySelectorAll('.link-text')[0].textContent = translations.link1;
+                document.querySelectorAll('.link-text')[1].textContent = translations.link2;
+                
+                // Update active states
+                langAl.classList.remove('active');
+                langEn.classList.add('active');
+                
+                // Save preference
+                localStorage.setItem('language', 'en');
+            }
+        });
+        
+        langAl.addEventListener('click', () => {
+            if (!langAl.classList.contains('active')) {
+                // Change to Albanian
+                document.querySelector('.hero-title').textContent = "Poezi nga Jamarbër Hoxha";
+                document.querySelector('.hero-subtitle').textContent = "Prisni në botën e bukur të poezisë së Jamarbër Hoxhës";
+                document.querySelector('.btn-primary').textContent = "Zbulo Librat";
+                document.querySelector('.books-title').textContent = "Librat e Jamarbër Hoxhës";
+                document.querySelector('.author-title').textContent = "Rreth Autorit";
+                document.querySelectorAll('.author-text')[0].textContent = "Jamarbër Hoxha ka lindur më 17 dhjetor 2010. Është diagnostikuar me Çrregullime të Spektrit të Autizmit në dhjetor të 2013-ës. Ndjek shkollën \"World Academy of Tirana\".";
+                document.querySelectorAll('.author-text')[1].textContent = "Libri është pasioni i tij më i madh. Jamarbri lexon mesatarisht një libër në javë dhe ndër autorët e tij më të parapëlqyer janë Shekspiri dhe Ibsen.";
+                document.querySelectorAll('.author-text')[2].textContent = "Është anëtar i bibliotekës \"Petro Zheji\" në Tiranë. Ka fituar çmimin \"Lexuesi i vitit\", në Panairin e Librit 2020.";
+                document.querySelector('.video-title').textContent = "Video për Jamarbër Hoxha";
+                document.querySelector('.links-title').textContent = "Lidhje të tjera";
+                document.querySelectorAll('.link-text')[0].textContent = "Artikulli në SOT.com.al";
+                document.querySelectorAll('.link-text')[1].textContent = "Etiketa në ABCNews.al";
+                
+                // Update active states
+                langEn.classList.remove('active');
+                langAl.classList.add('active');
+                
+                // Save preference
+                localStorage.setItem('language', 'al');
+            }
+        });
+        
+        // Check saved language preference on load
+        window.onload = function() {
+            const savedLang = localStorage.getItem('language');
+            if (savedLang === 'en') {
+                langEn.click();
+            }
+        };
     </script>
 </body>
 </html>
