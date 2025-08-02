@@ -17,7 +17,7 @@
             --card-bg: #ffffff;
             --hero-overlay: rgba(0,0,0,0.7);
         }
-
+        
         [data-theme="dark"] {
             --primary-color: #e63946;
             --secondary-color: #1d3557;
@@ -37,7 +37,6 @@
             scroll-behavior: smooth;
             margin: 0;
             padding: 0;
-            transition: background-color 0.5s ease, color 0.5s ease;
         }
         
         .navbar {
@@ -71,29 +70,6 @@
         .theme-toggle:hover {
             transform: rotate(30deg);
             color: var(--secondary-color);
-        }
-        
-        .lang-switch {
-            display: flex;
-            gap: 5px;
-            margin-left: 15px;
-        }
-        
-        .lang-btn {
-            background: rgba(255,255,255,0.2);
-            border: 1px solid rgba(255,255,255,0.3);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-        }
-        
-        .lang-btn.active {
-            background: white;
-            color: var(--primary-color);
-            font-weight: bold;
         }
         
         .social-icons {
@@ -284,18 +260,61 @@
             transition: all 0.3s ease;
             margin-bottom: 20px;
             text-align: center;
-            padding: 20px;
         }
         
-        .video-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        .video-thumbnail {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            overflow: hidden;
         }
         
-        .video-card a {
-            text-decoration: none;
+        .video-thumbnail img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .video-thumbnail::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 0, 0, 0.8);
+            mask: url("image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cpath d='M70 40c0 4.4-3.6 8-8 8H20c-4.4 0-8-3.6-8-8s3.6-8 8-8h42c4.4 0 8 3.6 8 8z'/%3E%3Cpath d='M30 25l20 15-20 15z'/%3E%3C/svg%3E") no-repeat 50% 50%;
+            -webkit-mask: url("image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cpath d='M70 40c0 4.4-3.6 8-8 8H20c-4.4 0-8-3.6-8-8s3.6-8 8-8h42c4.4 0 8 3.6 8 8z'/%3E%3Cpath d='M30 25l20 15-20 15z'/%3E%3C/svg%3E") no-repeat 50% 50%;
+            mask-size: 80%;
+            -webkit-mask-size: 80%;
+        }
+        
+        .video-card:hover .video-thumbnail img {
+            transform: scale(1.05);
+        }
+        
+        .video-info {
+            padding: 15px;
+        }
+        
+        .video-info h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            margin-bottom: 5px;
             color: var(--dark-color);
-            font-weight: bold;
+            text-align: left;
+        }
+        
+        .video-info p {
+            font-size: 14px;
+            color: #666;
+            margin: 0;
         }
         
         footer {
@@ -342,6 +361,10 @@
                 height: 35px;
                 font-size: 16px;
             }
+            
+            .video-info h4 {
+                font-size: 16px;
+            }
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
@@ -353,11 +376,7 @@
             <a class="navbar-brand" href="#">
                 <i class="fas fa-book"></i> Auverna<span>mon</span>
             </a>
-            <div class="d-flex align-items-center">
-                <div class="lang-switch">
-                    <button class="lang-btn active" id="lang-al">SQ</button>
-                    <button class="lang-btn" id="lang-en">EN</button>
-                </div>
+            <div class="d-flex">
                 <div class="social-icons">
                     <a href="https://www.facebook.com/jamarberhoxha/" class="social-icon" target="_blank">
                         <i class="fab fa-facebook-f"></i>
@@ -411,6 +430,9 @@
                     <div class="book-content">
                         <h3>AuvernaMon (Lulëkuqja)</h3>
                         <p>Jamarbër Hoxha</p>
+                        <div class="book-excerpt">
+                            Hasen në këto vargje një mori ndjesish që, me gjasë, do ta kredhin lexuesin empatik në një gjendje shpirtërore naive në dukje, por të aftë për t’i krijuar atij ndjesi që mund ta çojnë drejt një përjetimi befasues. I tendosur midis frikës dhe sigurisë, fobisë dhe mrekullisë, trishtimit dhe gëzimit, ditës dhe natës, errësirës dhe dritës, heshtjes dhe zërave, mbylljes brenda në shtëpi dhe daljes jashtë mureve të saj, Jamarbëri kërkon dhe lufton për të kuptuar "pse"-në e gjërave, "pse"-në e marrëdhënieve të tij me njerëzit cilëtdo e kudo qofshin ata.
+                        </div>
                         <a href="https://toena.al/home/details/446-auvernamon-lulekuqja" class="btn btn-primary">Lexo Më Shumë</a>
                     </div>
                 </div>
@@ -425,6 +447,30 @@
                     <div class="book-content">
                         <h3>Djaloshi Autik</h3>
                         <p>Jamarbër Hoxha</p>
+                        <div class="book-excerpt">
+                            ULËRIMË AUTIKE<br><br>
+                            
+                            Po sikur të bëje atë që do bëje<br>
+                            dihet do ngrija kupën e qiellit.<br><br>
+                            
+                            Ti e lodhura ime<br>
+                            do ta ngrija kupën e qiellit<br>
+                            për hir të mërzisë.<br><br>
+                            
+                            Asgjëja do mbijetonte në vendin tonë.<br><br>
+                            
+                            Ndodh "Oh Zoti im!".<br>
+                            Lutja e lirisë,<br>
+                            dhe kur e dëgjoj ti bëhesh e artë.<br><br>
+                            
+                            E artë si hëna.<br>
+                            dhe transformohesh në mal.<br><br>
+                            
+                            Bëhesh shkëmb,<br>
+                            dhe ndodh që të kapërcej ty<br>
+                            dhe unë mbështes këmbën në mal,<br>
+                            dhe i fortë bëj "ngjitje"
+                        </div>
                         <a href="https://toena.al/home/details/755-djaloshi-autik" class="btn btn-primary">Lexo Më Shumë</a>
                     </div>
                 </div>
@@ -450,9 +496,14 @@
             <!-- Video 1 -->
             <div class="col-md-4">
                 <div class="video-card">
-                    <a href="https://www.youtube.com/watch?v=O8slu0x4-xQ" target="_blank">
-                        <h4>Video 1</h4>
-                        <p>Kliko për të shihur video-në</p>
+                    <a href="https://youtu.be/d08ApTde3lY" target="_blank">
+                        <div class="video-thumbnail">
+                            <img src="https://i.ytimg.com/vi/d08ApTde3lY/hqdefault.jpg" alt="Jamarbër Hoxha - Poezi">
+                        </div>
+                        <div class="video-info">
+                            <h4>Jamarbër Hoxha - Poezi</h4>
+                            <p>Kliko për të shihur video-në</p>
+                        </div>
                     </a>
                 </div>
             </div>
@@ -460,9 +511,14 @@
             <!-- Video 2 -->
             <div class="col-md-4">
                 <div class="video-card">
-                    <a href="https://www.youtube.com/watch?v=bG-UHfc4IA8" target="_blank">
-                        <h4>Video 2</h4>
-                        <p>Kliko për të shihur video-në</p>
+                    <a href="https://youtu.be/IrtVr8OqA8E" target="_blank">
+                        <div class="video-thumbnail">
+                            <img src="https://i.ytimg.com/vi/IrtVr8OqA8E/hqdefault.jpg" alt="Jamarbër Hoxha - Intervistë">
+                        </div>
+                        <div class="video-info">
+                            <h4>Jamarbër Hoxha - Intervistë</h4>
+                            <p>Kliko për të shihur video-në</p>
+                        </div>
                     </a>
                 </div>
             </div>
@@ -470,9 +526,14 @@
             <!-- Video 3 -->
             <div class="col-md-4">
                 <div class="video-card">
-                    <a href="https://www.youtube.com/watch?v=B7AS11_Xqik" target="_blank">
-                        <h4>Video 3</h4>
-                        <p>Kliko për të shihur video-në</p>
+                    <a href="https://youtu.be/_rflpDOsxa0" target="_blank">
+                        <div class="video-thumbnail">
+                            <img src="https://i.ytimg.com/vi/_rflpDOsxa0/hqdefault.jpg" alt="Jamarbër Hoxha - Lexim Publik">
+                        </div>
+                        <div class="video-info">
+                            <h4>Jamarbër Hoxha - Lexim Publik</h4>
+                            <p>Kliko për të shihur video-në</p>
+                        </div>
                     </a>
                 </div>
             </div>
@@ -480,9 +541,59 @@
             <!-- Video 4 -->
             <div class="col-md-4">
                 <div class="video-card">
-                    <a href="https://www.youtube.com/watch?v=3NGhq-_favM" target="_blank">
-                        <h4>Video 4</h4>
-                        <p>Kliko për të shihur video-në</p>
+                    <a href="https://youtu.be/u9Tdh4bH_8Y" target="_blank">
+                        <div class="video-thumbnail">
+                            <img src="https://i.ytimg.com/vi/u9Tdh4bH_8Y/hqdefault.jpg" alt="Jamarbër Hoxha - Prezantim Libri">
+                        </div>
+                        <div class="video-info">
+                            <h4>Jamarbër Hoxha - Prezantim Libri</h4>
+                            <p>Kliko për të shihur video-në</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Video 5 -->
+            <div class="col-md-4">
+                <div class="video-card">
+                    <a href="https://youtu.be/iBTa5Sfgx60" target="_blank">
+                        <div class="video-thumbnail">
+                            <img src="https://i.ytimg.com/vi/iBTa5Sfgx60/hqdefault.jpg" alt="Jamarbër Hoxha - Festivali i Poezisë">
+                        </div>
+                        <div class="video-info">
+                            <h4>Jamarbër Hoxha - Festivali i Poezisë</h4>
+                            <p>Kliko për të shihur video-në</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Video 6 -->
+            <div class="col-md-4">
+                <div class="video-card">
+                    <a href="https://youtu.be/qAiFJtwa7Ng" target="_blank">
+                        <div class="video-thumbnail">
+                            <img src="https://i.ytimg.com/vi/qAiFJtwa7Ng/hqdefault.jpg" alt="Jamarbër Hoxha - Diskutim me Lexues">
+                        </div>
+                        <div class="video-info">
+                            <h4>Jamarbër Hoxha - Diskutim me Lexues</h4>
+                            <p>Kliko për të shihur video-në</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Video 7 -->
+            <div class="col-md-4">
+                <div class="video-card">
+                    <a href="https://youtu.be/ullkSPRk4YI" target="_blank">
+                        <div class="video-thumbnail">
+                            <img src="https://i.ytimg.com/vi/ullkSPRk4YI/hqdefault.jpg" alt="Jamarbër Hoxha - Çmimi i Lexuesit të Vitit">
+                        </div>
+                        <div class="video-info">
+                            <h4>Jamarbër Hoxha - Çmimi i Lexuesit të Vitit</h4>
+                            <p>Kliko për të shihur video-në</p>
+                        </div>
                     </a>
                 </div>
             </div>
@@ -492,8 +603,8 @@
     <!-- Links Section -->
     <section id="lidhjet" class="links-section">
         <h2 class="section-title links-title">Lidhje të tjera</h2>
-        <a href="https://sot.com.al/aktualitet/e-rralle-jamarber-hoxha-djali-magjik-qe-ka-lexuar-qe-15-muajsh-dhe-di/" target="_blank"><i class="fas fa-external-link-alt"></i> <span class="link-text">Artikulli në SOT.com.al</span></a>
-        <a href="https://abcnews.al/etiketa/jamarber-hoxha/" target="_blank"><i class="fas fa-external-link-alt"></i> <span class="link-text">Etiketa në ABCNews.al</span></a>
+        <a href="https://sot.com.al/aktualitet/e-rralle-jamarber-hoxha-djali-magjik-qe-ka-lexuar-qe-15-muajsh-dhe-di/" target="_blank"><i class="fas fa-external-link-alt"></i> Artikulli në SOT.com.al</a>
+        <a href="https://abcnews.al/etiketa/jamarber-hoxha/" target="_blank"><i class="fas fa-external-link-alt"></i> Etiketa në ABCNews.al</a>
     </section>
 
     <!-- Footer -->
@@ -556,121 +667,6 @@
                 localStorage.setItem('theme', 'dark');
             }
         });
-
-        // Language Toggle
-        const langAl = document.getElementById('lang-al');
-        const langEn = document.getElementById('lang-en');
-        
-        // English translations
-        const translations = {
-            heroTitle: "Poetry by Jamarbër Hoxha",
-            heroSubtitle: "Enter the beautiful world of Jamarbër Hoxha's poetry",
-            discoverBtn: "Discover Books",
-            booksTitle: "Books by Jamarbër Hoxha",
-            authorTitle: "About the Author",
-            authorText1: "Jamarbër Hoxha was born on December 17, 2010. He was diagnosed with Autism Spectrum Disorder in December 2013. He attends World Academy of Tirana.",
-            authorText2: "Books are his greatest passion. Jamarbër reads an average of one book per week, and his favorite authors are Shakespeare and Ibsen.",
-            authorText3: "He is a member of the 'Petro Zheji' library in Tirana. He won the 'Reader of the Year' award at the Book Fair 2020.",
-            videoTitle: "Videos about Jamarbër Hoxha",
-            linksTitle: "Other Links",
-            link1: "Article on SOT.com.al",
-            link2: "Tag on ABCNews.al"
-        };
-
-        langEn.addEventListener('click', () => {
-            if (!langEn.classList.contains('active')) {
-                // Change to English
-                document.querySelector('.hero-title').textContent = translations.heroTitle;
-                document.querySelector('.hero-subtitle').textContent = translations.heroSubtitle;
-                document.querySelector('.btn-primary').textContent = translations.discoverBtn;
-                document.querySelector('.books-title').textContent = translations.booksTitle;
-                document.querySelector('.author-title').textContent = translations.authorTitle;
-                document.querySelectorAll('.author-text')[0].textContent = translations.authorText1;
-                document.querySelectorAll('.author-text')[1].textContent = translations.authorText2;
-                document.querySelectorAll('.author-text')[2].textContent = translations.authorText3;
-                document.querySelector('.video-title').textContent = translations.videoTitle;
-                document.querySelector('.links-title').textContent = translations.linksTitle;
-                document.querySelectorAll('.link-text')[0].textContent = translations.link1;
-                document.querySelectorAll('.link-text')[1].textContent = translations.link2;
-                
-                // Update active states
-                langAl.classList.remove('active');
-                langEn.classList.add('active');
-                
-                // Save preference
-                localStorage.setItem('language', 'en');
-            }
-        });
-        
-        langAl.addEventListener('click', () => {
-            if (!langAl.classList.contains('active')) {
-                // Change to Albanian
-                document.querySelector('.hero-title').textContent = "Poezi nga Jamarbër Hoxha";
-                document.querySelector('.hero-subtitle').textContent = "Prisni në botën e bukur të poezisë së Jamarbër Hoxhës";
-                document.querySelector('.btn-primary').textContent = "Zbulo Librat";
-                document.querySelector('.books-title').textContent = "Librat e Jamarbër Hoxhës";
-                document.querySelector('.author-title').textContent = "Rreth Autorit";
-                document.querySelectorAll('.author-text')[0].textContent = "Jamarbër Hoxha ka lindur më 17 dhjetor 2010. Është diagnostikuar me Çrregullime të Spektrit të Autizmit në dhjetor të 2013-ës. Ndjek shkollën \"World Academy of Tirana\".";
-                document.querySelectorAll('.author-text')[1].textContent = "Libri është pasioni i tij më i madh. Jamarbri lexon mesatarisht një libër në javë dhe ndër autorët e tij më të parapëlqyer janë Shekspiri dhe Ibsen.";
-                document.querySelectorAll('.author-text')[2].textContent = "Është anëtar i bibliotekës \"Petro Zheji\" në Tiranë. Ka fituar çmimin \"Lexuesi i vitit\", në Panairin e Librit 2020.";
-                document.querySelector('.video-title').textContent = "Video për Jamarbër Hoxha";
-                document.querySelector('.links-title').textContent = "Lidhje të tjera";
-                document.querySelectorAll('.link-text')[0].textContent = "Artikulli në SOT.com.al";
-                document.querySelectorAll('.link-text')[1].textContent = "Etiketa në ABCNews.al";
-                
-                // Update active states
-                langEn.classList.remove('active');
-                langAl.classList.add('active');
-                
-                // Save preference
-                localStorage.setItem('language', 'al');
-            }
-        });
-        
-        // Check saved language preference on load
-        window.onload = function() {
-            const savedLang = localStorage.getItem('language');
-            if (savedLang === 'en') {
-                langEn.click();
-            }
-        };
     </script>
 </body>
-</html> <!-- Buton i muzikës -->
-<div id="musicButton" style="position: fixed; bottom: 20px; right: 20px; background: #e63946; color: white; padding: 12px 20px; border-radius: 30px; font-size: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 1000; cursor: pointer; display: flex; align-items: center; gap: 8px;">
-    <i class="fas fa-music"></i> Luaj Muzikë
-</div>
-
-<!-- Audio Player (i fshehur) -->
-<audio id="bgMusic" loop>
-    <source src="https://cdn.pixabay.com/audio/2022/01/20/audio_758230115.mp3" type="audio/mpeg">
-</audio>
-
-<script>
-    const musicButton = document.getElementById('musicButton');
-    const bgMusic = document.getElementById('bgMusic');
-
-    // Kontrollo nëse muzika është e aktivizuar më parë
-    if (localStorage.getItem('musicEnabled') === 'true') {
-        musicButton.innerHTML = '<i class="fas fa-pause"></i> Ndalo Muzikën';
-        bgMusic.play().catch(e => console.log("Luajtja e muzikës dështoi: ", e));
-    }
-
-    musicButton.addEventListener('click', () => {
-        if (bgMusic.paused) {
-            bgMusic.play()
-                .then(() => {
-                    musicButton.innerHTML = '<i class="fas fa-pause"></i> Ndalo Muzikën';
-                    localStorage.setItem('musicEnabled', 'true');
-                })
-                .catch(e => {
-                    console.error("Luajtja e muzikës dështoi: ", e);
-                    alert("Luajtja e muzikës dështoi. Ju lutemi, provoni përsëri ose lejoni audio në shfletuesin tuaj.");
-                });
-        } else {
-            bgMusic.pause();
-            musicButton.innerHTML = '<i class="fas fa-music"></i> Luaj Muzikë';
-            localStorage.setItem('musicEnabled', 'false');
-        }
-    });
-</script> 
+</html>
