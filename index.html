@@ -127,31 +127,6 @@
             text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
         }
         
-        .search-container {
-            display: flex;
-            max-width: 500px;
-            margin: 20px auto 0;
-        }
-        
-        .search-input {
-            flex: 1;
-            padding: 12px 15px;
-            border: none;
-            border-radius: 30px 0 0 30px;
-            font-size: 16px;
-            outline: none;
-        }
-        
-        .search-btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 0 30px 30px 0;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        
         .btn-primary {
             background-color: var(--primary-color);
             border-color: var(--primary-color);
@@ -336,8 +311,8 @@
             width: 60px;
             height: 60px;
             background: rgba(255, 0, 0, 0.8);
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cpath d='M70 40c0 4.4-3.6 8-8 8H20c-4.4 0-8-3.6-8-8s3.6-8 8-8h42c4.4 0 8 3.6 8 8z'/%3E%3Cpath d='M30 25l20 15-20 15z'/%3E%3C/svg%3E") no-repeat 50% 50%;
-            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cpath d='M70 40c0 4.4-3.6 8-8 8H20c-4.4 0-8-3.6-8-8s3.6-8 8-8h42c4.4 0 8 3.6 8 8z'/%3E%3Cpath d='M30 25l20 15-20 15z'/%3E%3C/svg%3E") no-repeat 50% 50%;
+            mask: url("image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cpath d='M70 40c0 4.4-3.6 8-8 8H20c-4.4 0-8-3.6-8-8s3.6-8 8-8h42c4.4 0 8 3.6 8 8z'/%3E%3Cpath d='M30 25l20 15-20 15z'/%3E%3C/svg%3E") no-repeat 50% 50%;
+            -webkit-mask: url("image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cpath d='M70 40c0 4.4-3.6 8-8 8H20c-4.4 0-8-3.6-8-8s3.6-8 8-8h42c4.4 0 8 3.6 8 8z'/%3E%3Cpath d='M30 25l20 15-20 15z'/%3E%3C/svg%3E") no-repeat 50% 50%;
             mask-size: 80%;
             -webkit-mask-size: 80%;
         }
@@ -468,10 +443,6 @@
         <div class="container hero-content">
             <h1 class="hero-title">Poezi nga Jamarbër Hoxha</h1>
             <p class="hero-subtitle">Prisni në botën e bukur të poezisë së Jamarbër Hoxhës</p>
-            <div class="search-container">
-                <input type="text" id="searchInput" class="search-input" placeholder="Kërko librin...">
-                <button onclick="searchBook()" class="search-btn">Kërko</button>
-            </div>
             <a href="#librat" class="btn btn-primary">Zbulo Librat</a>
         </div>
     </section>
@@ -731,26 +702,6 @@
                 htmlElement.setAttribute('data-theme', 'dark');
                 themeIcon.classList.replace('fa-moon', 'fa-sun');
                 localStorage.setItem('theme', 'dark');
-            }
-        });
-        
-        // Search functionality
-        function searchBook() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
-            
-            if (searchTerm.includes('auvernamon')) {
-                window.location.href = './book-auvernamon.html';
-            } else if (searchTerm.includes('djaloshi') || searchTerm.includes('autik')) {
-                window.location.href = './book-djaloshi.html';
-            } else if (searchTerm) {
-                alert('Asnjë libër i gjetur. Ju lutemi provoni "AuvernaMon" ose "Djaloshi Autik".');
-            }
-        }
-        
-        // Allow search on Enter key
-        document.getElementById('searchInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                searchBook();
             }
         });
     </script>
