@@ -673,12 +673,4 @@
             localStorage.setItem('musicEnabled', 'false');
         }
     });
-</script> .logo-poppie {
-    width: 40px;
-    height: 40px;
-    margin-right: 10px;
-    background-image: url('https://image.shutterstock.com/image-vector/poppie-flower-continuous-line-drawing-2471950835.jpg');
-    background-size: cover;
-    background-position: center;
-    border-radius: 50%;
-}
+</script> 
