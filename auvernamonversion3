@@ -636,4 +636,41 @@
         };
     </script>
 </body>
-</html>
+</html> <!-- Buton i muzikës -->
+<div id="musicButton" style="position: fixed; bottom: 20px; right: 20px; background: #e63946; color: white; padding: 12px 20px; border-radius: 30px; font-size: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 1000; cursor: pointer; display: flex; align-items: center; gap: 8px;">
+    <i class="fas fa-music"></i> Luaj Muzikë
+</div>
+
+<!-- Audio Player (i fshehur) -->
+<audio id="bgMusic" loop>
+    <source src="https://cdn.pixabay.com/audio/2022/01/20/audio_758230115.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    const musicButton = document.getElementById('musicButton');
+    const bgMusic = document.getElementById('bgMusic');
+
+    // Kontrollo nëse muzika është e aktivizuar më parë
+    if (localStorage.getItem('musicEnabled') === 'true') {
+        musicButton.innerHTML = '<i class="fas fa-pause"></i> Ndalo Muzikën';
+        bgMusic.play().catch(e => console.log("Luajtja e muzikës dështoi: ", e));
+    }
+
+    musicButton.addEventListener('click', () => {
+        if (bgMusic.paused) {
+            bgMusic.play()
+                .then(() => {
+                    musicButton.innerHTML = '<i class="fas fa-pause"></i> Ndalo Muzikën';
+                    localStorage.setItem('musicEnabled', 'true');
+                })
+                .catch(e => {
+                    console.error("Luajtja e muzikës dështoi: ", e);
+                    alert("Luajtja e muzikës dështoi. Ju lutemi, provoni përsëri ose lejoni audio në shfletuesin tuaj.");
+                });
+        } else {
+            bgMusic.pause();
+            musicButton.innerHTML = '<i class="fas fa-music"></i> Luaj Muzikë';
+            localStorage.setItem('musicEnabled', 'false');
+        }
+    });
+</script>
