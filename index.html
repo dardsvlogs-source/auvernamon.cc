@@ -127,6 +127,31 @@
             text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
         }
         
+        .search-container {
+            display: flex;
+            max-width: 500px;
+            margin: 20px auto 0;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 30px 0 0 30px;
+            font-size: 16px;
+            outline: none;
+        }
+        
+        .search-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 0 30px 30px 0;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
         .btn-primary {
             background-color: var(--primary-color);
             border-color: var(--primary-color);
@@ -251,25 +276,6 @@
             text-align: justify;
         }
         
-        .links-section {
-            text-align: center;
-            margin: 50px 0;
-        }
-        
-        .links-section a {
-            display: inline-block;
-            margin: 15px;
-            font-size: 18px;
-            color: var(--dark-color);
-            text-decoration: none;
-            border-bottom: 2px solid transparent;
-            transition: border-color 0.3s ease;
-        }
-        
-        .links-section a:hover {
-            border-color: var(--primary-color);
-        }
-        
         .youtube-section {
             margin-top: 50px;
         }
@@ -282,6 +288,12 @@
             transition: all 0.3s ease;
             margin-bottom: 20px;
             text-align: center;
+            height: 100%;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
         }
         
         .video-thumbnail {
@@ -302,6 +314,10 @@
             transition: transform 0.3s ease;
         }
         
+        .video-card:hover .video-thumbnail img {
+            transform: scale(1.05);
+        }
+        
         .video-thumbnail::after {
             content: '';
             position: absolute;
@@ -317,10 +333,6 @@
             -webkit-mask-size: 80%;
         }
         
-        .video-card:hover .video-thumbnail img {
-            transform: scale(1.05);
-        }
-        
         .video-info {
             padding: 15px;
         }
@@ -330,13 +342,31 @@
             font-size: 18px;
             margin-bottom: 5px;
             color: var(--dark-color);
-            text-align: left;
         }
         
         .video-info p {
             font-size: 14px;
             color: #666;
             margin: 0;
+        }
+        
+        .links-section {
+            text-align: center;
+            margin: 50px 0;
+        }
+        
+        .links-section a {
+            display: inline-block;
+            margin: 15px;
+            font-size: 18px;
+            color: var(--dark-color);
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+        
+        .links-section a:hover {
+            border-color: var(--primary-color);
         }
         
         footer {
@@ -384,10 +414,6 @@
                 font-size: 16px;
             }
             
-            .video-info h4 {
-                font-size: 16px;
-            }
-            
             .author-row {
                 flex-direction: column;
             }
@@ -404,7 +430,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="#">
-                 Auverna<span>mon</span>
+                Auverna<span>mon</span>
             </a>
             <div class="d-flex">
                 <div class="social-icons">
@@ -443,6 +469,10 @@
         <div class="container hero-content">
             <h1 class="hero-title">Poezi nga Jamarbër Hoxha</h1>
             <p class="hero-subtitle">Prisni në botën e bukur të poezisë së Jamarbër Hoxhës</p>
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="Kërko librin...">
+                <button onclick="searchBook()" class="search-btn">Kërko</button>
+            </div>
             <a href="#librat" class="btn btn-primary">Zbulo Librat</a>
         </div>
     </section>
@@ -530,7 +560,7 @@
     <section class="youtube-section container">
         <h2 class="section-title video-title">Video për Jamarbër Hoxha</h2>
         <div class="row">
-            <!-- Video 1 -->
+            <!-- Existing Videos -->
             <div class="col-md-4">
                 <div class="video-card">
                     <a href="https://youtu.be/d08ApTde3lY" target="_blank">
@@ -545,7 +575,6 @@
                 </div>
             </div>
 
-            <!-- Video 2 -->
             <div class="col-md-4">
                 <div class="video-card">
                     <a href="https://youtu.be/IrtVr8OqA8E" target="_blank">
@@ -560,7 +589,6 @@
                 </div>
             </div>
 
-            <!-- Video 3 -->
             <div class="col-md-4">
                 <div class="video-card">
                     <a href="https://youtu.be/_rflpDOsxa0" target="_blank">
@@ -575,7 +603,6 @@
                 </div>
             </div>
 
-            <!-- Video 4 -->
             <div class="col-md-4">
                 <div class="video-card">
                     <a href="https://youtu.be/u9Tdh4bH_8Y" target="_blank">
@@ -590,7 +617,6 @@
                 </div>
             </div>
 
-            <!-- Video 5 -->
             <div class="col-md-4">
                 <div class="video-card">
                     <a href="https://youtu.be/iBTa5Sfgx60" target="_blank">
@@ -605,7 +631,6 @@
                 </div>
             </div>
 
-            <!-- Video 6 -->
             <div class="col-md-4">
                 <div class="video-card">
                     <a href="https://youtu.be/qAiFJtwa7Ng" target="_blank">
@@ -620,7 +645,6 @@
                 </div>
             </div>
 
-            <!-- Video 7 -->
             <div class="col-md-4">
                 <div class="video-card">
                     <a href="https://youtu.be/ullkSPRk4YI" target="_blank">
@@ -629,6 +653,91 @@
                         </div>
                         <div class="video-info">
                             <h4>Jamarbër Hoxha - Çmimi i Lexuesit të Vitit</h4>
+                            <p>Kliko për të shihur video-në</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- New Videos You Requested -->
+            <div class="col-md-4">
+                <div class="video-card">
+                    <a href="https://youtu.be/4QbG26Qk_X8" target="_blank">
+                        <div class="video-thumbnail">
+                            <img src="https://i.ytimg.com/vi/4QbG26Qk_X8/hqdefault.jpg" alt="Video e re 1">
+                        </div>
+                        <div class="video-info">
+                            <h4>Video e re 1</h4>
+                            <p>Kliko për të shihur video-në</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="video-card">
+                    <a href="https://youtu.be/ItkwIMajsR4" target="_blank">
+                        <div class="video-thumbnail">
+                            <img src="https://i.ytimg.com/vi/ItkwIMajsR4/hqdefault.jpg" alt="Video e re 2">
+                        </div>
+                        <div class="video-info">
+                            <h4>Video e re 2</h4>
+                            <p>Kliko për të shihur video-në</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="video-card">
+                    <a href="https://youtu.be/IR6LcI8Uj4o" target="_blank">
+                        <div class="video-thumbnail">
+                            <img src="https://i.ytimg.com/vi/IR6LcI8Uj4o/hqdefault.jpg" alt="Video e re 3">
+                        </div>
+                        <div class="video-info">
+                            <h4>Video e re 3</h4>
+                            <p>Kliko për të shihur video-në</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="video-card">
+                    <a href="https://youtu.be/htRE5meEa6I" target="_blank">
+                        <div class="video-thumbnail">
+                            <img src="https://i.ytimg.com/vi/htRE5meEa6I/hqdefault.jpg" alt="Video e re 4">
+                        </div>
+                        <div class="video-info">
+                            <h4>Video e re 4</h4>
+                            <p>Kliko për të shihur video-në</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="video-card">
+                    <a href="https://youtu.be/UcAwhCxr6po" target="_blank">
+                        <div class="video-thumbnail">
+                            <img src="https://i.ytimg.com/vi/UcAwhCxr6po/hqdefault.jpg" alt="Video e re 5">
+                        </div>
+                        <div class="video-info">
+                            <h4>Video e re 5</h4>
+                            <p>Kliko për të shihur video-në</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="video-card">
+                    <a href="https://youtu.be/iHpFN2NBf1A" target="_blank">
+                        <div class="video-thumbnail">
+                            <img src="https://i.ytimg.com/vi/iHpFN2NBf1A/hqdefault.jpg" alt="Video e re 6">
+                        </div>
+                        <div class="video-info">
+                            <h4>Video e re 6</h4>
                             <p>Kliko për të shihur video-në</p>
                         </div>
                     </a>
@@ -702,6 +811,26 @@
                 htmlElement.setAttribute('data-theme', 'dark');
                 themeIcon.classList.replace('fa-moon', 'fa-sun');
                 localStorage.setItem('theme', 'dark');
+            }
+        });
+        
+        // Search functionality
+        function searchBook() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            
+            if (searchTerm.includes('auvernamon')) {
+                window.location.href = './book-auvernamon.html';
+            } else if (searchTerm.includes('djaloshi') || searchTerm.includes('autik')) {
+                window.location.href = './book-djaloshi.html';
+            } else if (searchTerm) {
+                alert('Asnjë libër i gjetur. Ju lutemi provoni "AuvernaMon" ose "Djaloshi Autik".');
+            }
+        }
+        
+        // Allow search on Enter key
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchBook();
             }
         });
     </script>
