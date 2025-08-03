@@ -17,7 +17,7 @@
             --card-bg: #ffffff;
             --hero-overlay: rgba(0,0,0,0.7);
         }
-        
+
         [data-theme="dark"] {
             --primary-color: #e63946;
             --secondary-color: #1d3557;
@@ -125,31 +125,6 @@
             max-width: 800px;
             margin: 0 auto 30px;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-        }
-        
-        .search-container {
-            display: flex;
-            max-width: 500px;
-            margin: 20px auto 0;
-        }
-        
-        .search-input {
-            flex: 1;
-            padding: 12px 15px;
-            border: none;
-            border-radius: 30px 0 0 30px;
-            font-size: 16px;
-            outline: none;
-        }
-        
-        .search-btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 0 30px 30px 0;
-            cursor: pointer;
-            font-size: 16px;
         }
         
         .btn-primary {
@@ -296,58 +271,9 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.15);
         }
         
-        .video-thumbnail {
-            position: relative;
-            width: 100%;
-            height: 0;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            overflow: hidden;
-        }
-        
-        .video-thumbnail img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-        
-        .video-card:hover .video-thumbnail img {
-            transform: scale(1.05);
-        }
-        
-        .video-thumbnail::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 0, 0, 0.8);
-            mask: url("image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cpath d='M70 40c0 4.4-3.6 8-8 8H20c-4.4 0-8-3.6-8-8s3.6-8 8-8h42c4.4 0 8 3.6 8 8z'/%3E%3Cpath d='M30 25l20 15-20 15z'/%3E%3C/svg%3E") no-repeat 50% 50%;
-            -webkit-mask: url("image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cpath d='M70 40c0 4.4-3.6 8-8 8H20c-4.4 0-8-3.6-8-8s3.6-8 8-8h42c4.4 0 8 3.6 8 8z'/%3E%3Cpath d='M30 25l20 15-20 15z'/%3E%3C/svg%3E") no-repeat 50% 50%;
-            mask-size: 80%;
-            -webkit-mask-size: 80%;
-        }
-        
-        .video-info {
-            padding: 15px;
-        }
-        
-        .video-info h4 {
-            font-family: 'Playfair Display', serif;
-            font-size: 18px;
-            margin-bottom: 5px;
+        .video-card a {
+            text-decoration: none;
             color: var(--dark-color);
-        }
-        
-        .video-info p {
-            font-size: 14px;
-            color: #666;
-            margin: 0;
         }
         
         .links-section {
@@ -369,26 +295,159 @@
             border-color: var(--primary-color);
         }
         
-        footer {
-            background-color: var(--dark-color);
-            color: white;
+        /* Horizontal Timeline Styles */
+        .horizontal-timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 50px auto;
             padding: 40px 0;
+        }
+        
+        /* Timeline line */
+        .timeline-track {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary-color), #ff6b6b);
+            transform: translateY(-50%);
+            border-radius: 3px;
+            box-shadow: 0 0 10px rgba(230, 57, 70, 0.3);
+            z-index: 1;
+        }
+        
+        .timeline-events {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .timeline-event {
+            flex: 1;
             text-align: center;
+            position: relative;
+            padding: 0 15px;
         }
         
-        .footer-links a {
-            color: var(--secondary-color);
-            margin: 0 15px;
-            text-decoration: none;
+        .event-marker {
+            width: 30px;
+            height: 30px;
+            background-color: var(--primary-color);
+            border: 4px solid white;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+            box-shadow: 0 0 0 3px var(--primary-color), 0 0 0 6px rgba(230, 57, 70, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
         }
         
-        .footer-links a:hover {
+        .timeline-event:hover .event-marker {
+            transform: translate(-50%, -50%) scale(1.3);
+            background-color: white;
+            box-shadow: 0 0 0 3px white, 0 0 0 6px var(--primary-color), 0 0 20px rgba(230, 57, 70, 0.5);
+        }
+        
+        .event-content {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-top: 50px;
+            transition: all 0.4s ease;
+            position: relative;
+            min-height: 220px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border: 1px solid rgba(230, 57, 70, 0.1);
+        }
+        
+        .timeline-event:hover .event-content {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border-color: rgba(230, 57, 70, 0.3);
+        }
+        
+        .event-year {
+            font-weight: bold;
             color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            font-family: 'Playfair Display', serif;
         }
         
-        .copyright {
-            margin-top: 20px;
-            color: #a8dadc;
+        .event-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+        }
+        
+        .event-description {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #666;
+        }
+        
+        /* Arrow connector */
+        .event-content::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 8px solid transparent;
+            border-bottom-color: var(--card-bg);
+            border-bottom-width: 15px;
+        }
+        
+        /* Responsive design for timeline */
+        @media (max-width: 992px) {
+            .timeline-events {
+                flex-direction: column;
+            }
+            
+            .timeline-track {
+                left: 30px;
+                top: 0;
+                bottom: 0;
+                width: 6px;
+                height: auto;
+                transform: none;
+            }
+            
+            .timeline-event {
+                padding: 30px 0 30px 60px;
+                text-align: left;
+                margin-bottom: 40px;
+            }
+            
+            .event-marker {
+                left: 30px;
+                top: 40px;
+                transform: translate(-50%, -50%);
+            }
+            
+            .event-content {
+                margin-top: 0;
+                min-height: auto;
+            }
+            
+            .event-content::before {
+                top: 30px;
+                left: -15px;
+                transform: none;
+                border: 8px solid transparent;
+                border-right-color: var(--card-bg);
+                border-right-width: 15px;
+                border-bottom-color: transparent;
+            }
         }
         
         @media (max-width: 768px) {
@@ -414,13 +473,51 @@
                 font-size: 16px;
             }
             
-            .author-row {
-                flex-direction: column;
+            .event-content {
+                padding: 20px;
+                margin-left: 50px;
             }
             
-            .author-image, .author-content {
-                min-width: 100%;
+            .event-title {
+                font-size: 1.2rem;
             }
+            
+            .timeline-track {
+                left: 20px;
+            }
+            
+            .timeline-event {
+                padding-left: 50px;
+            }
+            
+            .event-marker {
+                left: 20px;
+                width: 25px;
+                height: 25px;
+            }
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        .footer-links a {
+            color: var(--secondary-color);
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            color: #a8dadc;
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
@@ -430,7 +527,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="#">
-                Auverna<span>mon</span>
+                <i class="fas fa-book"></i> Auverna<span>mon</span>
             </a>
             <div class="d-flex">
                 <div class="social-icons">
@@ -457,6 +554,9 @@
                         <a class="nav-link" onclick="scrollToSection('autori')">Rreth Autorit</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" onclick="scrollToSection('timeline')">Historia</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="https://toena.al/libra/filtro?author=196">Lidhjet</a>
                     </li>
                 </ul>
@@ -469,10 +569,6 @@
         <div class="container hero-content">
             <h1 class="hero-title">Poezi nga Jamarbër Hoxha</h1>
             <p class="hero-subtitle">Prisni në botën e bukur të poezisë së Jamarbër Hoxhës</p>
-            <div class="search-container">
-                <input type="text" id="searchInput" class="search-input" placeholder="Kërko librin...">
-                <button onclick="searchBook()" class="search-btn">Kërko</button>
-            </div>
             <a href="#librat" class="btn btn-primary">Zbulo Librat</a>
         </div>
     </section>
@@ -556,188 +652,248 @@
         </div>
     </section>
 
+    <!-- Horizontal Timeline Section -->
+    <section id="timeline" class="container">
+        <h2 class="section-title">Historia e Jamarbër Hoxhës</h2>
+        <div class="horizontal-timeline">
+            <div class="timeline-track"></div>
+            <div class="timeline-events">
+                <!-- Event 1: Birth -->
+                <div class="timeline-event">
+                    <div class="event-marker"></div>
+                    <div class="event-content">
+                        <div class="event-year">17 Dhjetor 2010</div>
+                        <h3 class="event-title">Lindja</h3>
+                        <p class="event-description">Jamarbër Hoxha ka lindur në këtë ditë të veçantë. Fillimi i një historie unike që do të frymëzonte shumë njerëz.</p>
+                    </div>
+                </div>
+                
+                <!-- Event 2: Autism Diagnosis -->
+                <div class="timeline-event">
+                    <div class="event-marker"></div>
+                    <div class="event-content">
+                        <div class="event-year">Dhjetor 2013</div>
+                        <h3 class="event-title">Diagnoza e Autizmit</h3>
+                        <p class="event-description">Në moshën 3 vjeçare, Jamarbëri është diagnozuar me Çrregullime të Spektrit të Autizmit.</p>
+                    </div>
+                </div>
+                
+                <!-- Event 3: First Book -->
+                <div class="timeline-event">
+                    <div class="event-marker"></div>
+                    <div class="event-content">
+                        <div class="event-year">2021</div>
+                        <h3 class="event-title">Botimi i Librit të Parë</h3>
+                        <p class="event-description">Jamarbëri botoi librin e parë të tij "AuvernaMon (Lulëkuqja)", një koleksion i bukur i poezive.</p>
+                    </div>
+                </div>
+                
+                <!-- Event 4: Second Book -->
+                <div class="timeline-event">
+                    <div class="event-marker"></div>
+                    <div class="event-content">
+                        <div class="event-year">2023</div>
+                        <h3 class="event-title">Botimi i Librit të Dyte</h3>
+                        <p class="event-description">Jamarbëri vazhdon suksesin me botimin e librit të tij të dytë "Djaloshi Autik".</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Video Section -->
     <section class="youtube-section container">
         <h2 class="section-title video-title">Video për Jamarbër Hoxha</h2>
         <div class="row">
-            <!-- Existing Videos -->
+            <!-- Video 1 -->
             <div class="col-md-4">
                 <div class="video-card">
-                    <a href="https://youtu.be/d08ApTde3lY" target="_blank">
+                    <a href="https://www.youtube.com/watch?v=O8slu0x4-xQ" target="_blank">
                         <div class="video-thumbnail">
-                            <img src="https://i.ytimg.com/vi/d08ApTde3lY/hqdefault.jpg" alt="Jamarbër Hoxha - Poezi">
+                            <img src="https://i.ytimg.com/vi/O8slu0x4-xQ/hqdefault.jpg" alt="Video 1">
                         </div>
                         <div class="video-info">
-                            <h4>Jamarbër Hoxha - Poezi</h4>
+                            <h4>Video 1</h4>
                             <p>Kliko për të shihur video-në</p>
                         </div>
                     </a>
                 </div>
             </div>
 
+            <!-- Video 2 -->
             <div class="col-md-4">
                 <div class="video-card">
-                    <a href="https://youtu.be/IrtVr8OqA8E" target="_blank">
+                    <a href="https://www.youtube.com/watch?v=bG-UHfc4IA8" target="_blank">
                         <div class="video-thumbnail">
-                            <img src="https://i.ytimg.com/vi/IrtVr8OqA8E/hqdefault.jpg" alt="Jamarbër Hoxha - Intervistë">
+                            <img src="https://i.ytimg.com/vi/bG-UHfc4IA8/hqdefault.jpg" alt="Video 2">
                         </div>
                         <div class="video-info">
-                            <h4>Jamarbër Hoxha - Intervistë</h4>
+                            <h4>Video 2</h4>
                             <p>Kliko për të shihur video-në</p>
                         </div>
                     </a>
                 </div>
             </div>
 
+            <!-- Video 3 -->
             <div class="col-md-4">
                 <div class="video-card">
-                    <a href="https://youtu.be/_rflpDOsxa0" target="_blank">
+                    <a href="https://www.youtube.com/watch?v=B7AS11_Xqik" target="_blank">
                         <div class="video-thumbnail">
-                            <img src="https://i.ytimg.com/vi/_rflpDOsxa0/hqdefault.jpg" alt="Jamarbër Hoxha - Lexim Publik">
+                            <img src="https://i.ytimg.com/vi/B7AS11_Xqik/hqdefault.jpg" alt="Video 3">
                         </div>
                         <div class="video-info">
-                            <h4>Jamarbër Hoxha - Lexim Publik</h4>
+                            <h4>Video 3</h4>
                             <p>Kliko për të shihur video-në</p>
                         </div>
                     </a>
                 </div>
             </div>
 
+            <!-- Video 4 -->
             <div class="col-md-4">
                 <div class="video-card">
-                    <a href="https://youtu.be/u9Tdh4bH_8Y" target="_blank">
+                    <a href="https://www.youtube.com/watch?v=3NGhq-_favM" target="_blank">
                         <div class="video-thumbnail">
-                            <img src="https://i.ytimg.com/vi/u9Tdh4bH_8Y/hqdefault.jpg" alt="Jamarbër Hoxha - Prezantim Libri">
+                            <img src="https://i.ytimg.com/vi/3NGhq-_favM/hqdefault.jpg" alt="Video 4">
                         </div>
                         <div class="video-info">
-                            <h4>Jamarbër Hoxha - Prezantim Libri</h4>
+                            <h4>Video 4</h4>
                             <p>Kliko për të shihur video-në</p>
                         </div>
                     </a>
                 </div>
             </div>
 
+            <!-- Video 5 -->
             <div class="col-md-4">
                 <div class="video-card">
-                    <a href="https://youtu.be/iBTa5Sfgx60" target="_blank">
+                    <a href="https://www.youtube.com/watch?v=d08ApTde3lY" target="_blank">
                         <div class="video-thumbnail">
-                            <img src="https://i.ytimg.com/vi/iBTa5Sfgx60/hqdefault.jpg" alt="Jamarbër Hoxha - Festivali i Poezisë">
+                            <img src="https://i.ytimg.com/vi/d08ApTde3lY/hqdefault.jpg" alt="Video 5">
                         </div>
                         <div class="video-info">
-                            <h4>Jamarbër Hoxha - Festivali i Poezisë</h4>
+                            <h4>Video 5</h4>
                             <p>Kliko për të shihur video-në</p>
                         </div>
                     </a>
                 </div>
             </div>
 
+            <!-- Video 6 -->
             <div class="col-md-4">
                 <div class="video-card">
-                    <a href="https://youtu.be/qAiFJtwa7Ng" target="_blank">
+                    <a href="https://www.youtube.com/watch?v=IrtVr8OqA8E" target="_blank">
                         <div class="video-thumbnail">
-                            <img src="https://i.ytimg.com/vi/qAiFJtwa7Ng/hqdefault.jpg" alt="Jamarbër Hoxha - Diskutim me Lexues">
+                            <img src="https://i.ytimg.com/vi/IrtVr8OqA8E/hqdefault.jpg" alt="Video 6">
                         </div>
                         <div class="video-info">
-                            <h4>Jamarbër Hoxha - Diskutim me Lexues</h4>
+                            <h4>Video 6</h4>
                             <p>Kliko për të shihur video-në</p>
                         </div>
                     </a>
                 </div>
             </div>
 
+            <!-- Video 7 -->
             <div class="col-md-4">
                 <div class="video-card">
-                    <a href="https://youtu.be/ullkSPRk4YI" target="_blank">
+                    <a href="https://www.youtube.com/watch?v=_rflpDOsxa0" target="_blank">
                         <div class="video-thumbnail">
-                            <img src="https://i.ytimg.com/vi/ullkSPRk4YI/hqdefault.jpg" alt="Jamarbër Hoxha - Çmimi i Lexuesit të Vitit">
+                            <img src="https://i.ytimg.com/vi/_rflpDOsxa0/hqdefault.jpg" alt="Video 7">
                         </div>
                         <div class="video-info">
-                            <h4>Jamarbër Hoxha - Çmimi i Lexuesit të Vitit</h4>
+                            <h4>Video 7</h4>
                             <p>Kliko për të shihur video-në</p>
                         </div>
                     </a>
                 </div>
             </div>
 
-            <!-- New Videos You Requested -->
+            <!-- Video 8 -->
             <div class="col-md-4">
                 <div class="video-card">
-                    <a href="https://youtu.be/4QbG26Qk_X8" target="_blank">
+                    <a href="https://www.youtube.com/watch?v=u9Tdh4bH_8Y" target="_blank">
                         <div class="video-thumbnail">
-                            <img src="https://i.ytimg.com/vi/4QbG26Qk_X8/hqdefault.jpg" alt="Video e re 1">
+                            <img src="https://i.ytimg.com/vi/u9Tdh4bH_8Y/hqdefault.jpg" alt="Video 8">
                         </div>
                         <div class="video-info">
-                            <h4>Video e re 1</h4>
+                            <h4>Video 8</h4>
                             <p>Kliko për të shihur video-në</p>
                         </div>
                     </a>
                 </div>
             </div>
 
+            <!-- Video 9 -->
             <div class="col-md-4">
                 <div class="video-card">
-                    <a href="https://youtu.be/ItkwIMajsR4" target="_blank">
+                    <a href="https://www.youtube.com/watch?v=iBTa5Sfgx60" target="_blank">
                         <div class="video-thumbnail">
-                            <img src="https://i.ytimg.com/vi/ItkwIMajsR4/hqdefault.jpg" alt="Video e re 2">
+                            <img src="https://i.ytimg.com/vi/iBTa5Sfgx60/hqdefault.jpg" alt="Video 9">
                         </div>
                         <div class="video-info">
-                            <h4>Video e re 2</h4>
+                            <h4>Video 9</h4>
                             <p>Kliko për të shihur video-në</p>
                         </div>
                     </a>
                 </div>
             </div>
 
+            <!-- Video 10 -->
             <div class="col-md-4">
                 <div class="video-card">
-                    <a href="https://youtu.be/IR6LcI8Uj4o" target="_blank">
+                    <a href="https://www.youtube.com/watch?v=qAiFJtwa7Ng" target="_blank">
                         <div class="video-thumbnail">
-                            <img src="https://i.ytimg.com/vi/IR6LcI8Uj4o/hqdefault.jpg" alt="Video e re 3">
+                            <img src="https://i.ytimg.com/vi/qAiFJtwa7Ng/hqdefault.jpg" alt="Video 10">
                         </div>
                         <div class="video-info">
-                            <h4>Video e re 3</h4>
+                            <h4>Video 10</h4>
                             <p>Kliko për të shihur video-në</p>
                         </div>
                     </a>
                 </div>
             </div>
 
+            <!-- Video 11 -->
             <div class="col-md-4">
                 <div class="video-card">
-                    <a href="https://youtu.be/htRE5meEa6I" target="_blank">
+                    <a href="https://www.youtube.com/watch?v=ullkSPRk4YI" target="_blank">
                         <div class="video-thumbnail">
-                            <img src="https://i.ytimg.com/vi/htRE5meEa6I/hqdefault.jpg" alt="Video e re 4">
+                            <img src="https://i.ytimg.com/vi/ullkSPRk4YI/hqdefault.jpg" alt="Video 11">
                         </div>
                         <div class="video-info">
-                            <h4>Video e re 4</h4>
+                            <h4>Video 11</h4>
                             <p>Kliko për të shihur video-në</p>
                         </div>
                     </a>
                 </div>
             </div>
 
+            <!-- Video 12 -->
             <div class="col-md-4">
                 <div class="video-card">
-                    <a href="https://youtu.be/UcAwhCxr6po" target="_blank">
+                    <a href="https://www.youtube.com/watch?v=4QbG26Qk_X8" target="_blank">
                         <div class="video-thumbnail">
-                            <img src="https://i.ytimg.com/vi/UcAwhCxr6po/hqdefault.jpg" alt="Video e re 5">
+                            <img src="https://i.ytimg.com/vi/4QbG26Qk_X8/hqdefault.jpg" alt="Video 12">
                         </div>
                         <div class="video-info">
-                            <h4>Video e re 5</h4>
+                            <h4>Video 12</h4>
                             <p>Kliko për të shihur video-në</p>
                         </div>
                     </a>
                 </div>
             </div>
 
+            <!-- Video 13 -->
             <div class="col-md-4">
                 <div class="video-card">
-                    <a href="https://youtu.be/iHpFN2NBf1A" target="_blank">
+                    <a href="https://www.youtube.com/watch?v=ItkwIMajsR4" target="_blank">
                         <div class="video-thumbnail">
-                            <img src="https://i.ytimg.com/vi/iHpFN2NBf1A/hqdefault.jpg" alt="Video e re 6">
+                            <img src="https://i.ytimg.com/vi/ItkwIMajsR4/hqdefault.jpg" alt="Video 13">
                         </div>
                         <div class="video-info">
-                            <h4>Video e re 6</h4>
+                            <h4>Video 13</h4>
                             <p>Kliko për të shihur video-në</p>
                         </div>
                     </a>
@@ -811,26 +967,6 @@
                 htmlElement.setAttribute('data-theme', 'dark');
                 themeIcon.classList.replace('fa-moon', 'fa-sun');
                 localStorage.setItem('theme', 'dark');
-            }
-        });
-        
-        // Search functionality
-        function searchBook() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
-            
-            if (searchTerm.includes('auvernamon')) {
-                window.location.href = './book-auvernamon.html';
-            } else if (searchTerm.includes('djaloshi') || searchTerm.includes('autik')) {
-                window.location.href = './book-djaloshi.html';
-            } else if (searchTerm) {
-                alert('Asnjë libër i gjetur. Ju lutemi provoni "AuvernaMon" ose "Djaloshi Autik".');
-            }
-        }
-        
-        // Allow search on Enter key
-        document.getElementById('searchInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                searchBook();
             }
         });
     </script>
